@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-flask-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: flask-app
+  template:
+    metadata:
+      labels:
+        app: flask-app
+    spec:
+      containers:
+        - name: flask-container
+          image: rpmacalino/my-app:latest # <--- UPDATE THIS
+          imagePullPolicy: Always  # Forces K8s to re-download the image even if it has one
+          ports:
+            - containerPort: 5000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: flask-service
+spec:
+  selector:
+    app: flask-app
+  ports:
+    - protocol: TCP
+      port: 80           # We open Port 80
+      targetPort: 5000
+  type: LoadBalancer     # K3s will bind this to your server's Public IP automatically
