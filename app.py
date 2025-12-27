@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello():
-    return "Hello! I am running inside a Docker container!"
+    return "Hello! I am updated automatically with jenkins!"
 
 if __name__ == '__main__':
     # run() method of Flask class runs the application
