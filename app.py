@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello():
-    return "Hello! One git push is all it takes!"
+    return "Hello! One git push is all it takes! Let's try this again."
 
 if __name__ == '__main__':
     # run() method of Flask class runs the application
